@@ -1,37 +1,74 @@
 syntax = "proto3";
 package pb; // 定义自己的包名
-option go_package = "./pb/event"; // 指定生成go包的路径
+option go_package = "./pb/queue"; // 指定生成go包的路径
 
-enum EntityChangeType {
-  Create = 0;
-  Update = 1;
-  Delete = 2;
-}
-
-enum LogoutType {
-  Self = 0;
-  Force = 1;
-}
-
-enum CacheEvictType {
-  Normal = 0;
-  All = 1;
-}
-
-message CacheEvictMsg {
-  int32 cacheType = 1;
-  CacheEvictType evictType = 2;
+message QueueMsg {
+  int64 ts = 1;
+  map<string, string> headers = 2;
   string key = 3;
+  bytes payload = 4;
 }
 
-message UserLogoutMsg {
-  LogoutType logoutType = 1;
-  string accessToken = 2;
+message CommonResponse {
+  uint32 code = 1;
+  string msg = 2;
 }
 
-message EntityChangedMsg {
-  string entityType = 1;
-  EntityChangeType changeType = 2;
-  int32 newId = 3;
-  int32 oldId = 4;
+message ValidateDeviceAuthRequest {
+  uint32 type = 1;
+  string clientId = 2;
+  string certificate = 3;
+  string username = 4;
+  string password = 5;
+}
+
+message ValidateDeviceAuthResponse {
+  CommonResponse common = 1;
+  DeviceInfoProto deviceInfo = 2;
+}
+
+message DeviceInfoProto {
+  int64 tenantId = 1;
+  int64 productId = 2;
+  int64 deviceId = 4;
+  string deviceName = 5;
+  string additionalInfo = 6;
+}
+
+message ProductInfoProto {
+
+}
+
+message DeviceCredentialsProto {
+  int64 type = 1;
+  string certificate = 2;
+  string clientId = 3;
+  string username = 4;
+  string password = 5;
+}
+
+message ProvisionConnectRequest {
+  string key = 1;
+  string secret = 2;
+}
+
+message ProvisionConnectResponse {
+  CommonResponse common = 1;
+  int64 productId = 2;
+  int64 tenantId = 3;
+}
+
+message ProvisionRequest {
+  int64 productId = 1;
+  int64 tenantId = 2;
+  bool gateway = 3;
+  string deviceName = 4;
+  string deviceType = 5;
+  DeviceCredentialsProto credentials = 6;
+}
+
+message ProvisionResponse {
+  CommonResponse common = 1;
+  DeviceInfoProto deviceInfo = 2;
+  DeviceCredentialsProto credentials = 3;
 }

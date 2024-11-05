@@ -10,7 +10,7 @@ message QueueMsg {
 }
 
 message CommonResponse {
-  uint32 code = 1;
+  int32 code = 1;
   string msg = 2;
 }
 

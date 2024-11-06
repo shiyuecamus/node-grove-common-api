@@ -72,3 +72,18 @@ message ProvisionResponse {
   DeviceInfoProto deviceInfo = 2;
   DeviceCredentialsProto credentials = 3;
 }
+
+enum SessionEvent {
+  OPEN = 0;
+  CLOSED = 1;
+}
+
+enum SessionType {
+  SYNC = 0;
+  ASYNC = 1;
+}
+
+message DeviceSessionEventNotify {
+  SessionType type = 1;
+  SessionEvent event = 2;
+}

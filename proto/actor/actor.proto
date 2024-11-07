@@ -1,6 +1,6 @@
 syntax = "proto3";
-package pb; // 定义自己的包名
-option go_package = "./pb/actor"; // 指定生成go包的路径
+package actor; // 定义自己的包名
+option go_package = "././pb/actor"; // 指定生成go包的路径
 
 enum EntityChangeType {
   Create = 0;
@@ -46,7 +46,7 @@ enum SessionType {
   ASYNC = 1;
 }
 
-message DeviceSessionEventNotify {
+message DeviceSessionEventMsg {
   SessionType type = 1;
   SessionEvent event = 2;
 }

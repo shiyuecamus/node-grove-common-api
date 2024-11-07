@@ -1,0 +1,29 @@
+syntax = "proto3";
+package queue; // 定义自己的包名
+option go_package = "././pb/queue"; // 指定生成go包的路径
+
+enum SessionEvent {
+  OPEN = 0;
+  CLOSED = 1;
+}
+
+enum SessionType {
+  SYNC = 0;
+  ASYNC = 1;
+}
+
+message SessionInfoProto {
+  string nodeId = 1;
+  string sessionId = 2;
+  int64 tenantId = 3;
+  int64 deviceId = 4;
+  int64 productId = 5;
+  string deviceName = 6;
+  string deviceType = 7;
+}
+
+message DeviceSessionEventNotify {
+  SessionType type = 1;
+  SessionEvent event = 2;
+  SessionInfoProto sessionInfo = 3;
+}

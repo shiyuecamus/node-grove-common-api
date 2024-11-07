@@ -51,7 +51,18 @@ enum SessionType {
   ASYNC = 2;
 }
 
+message SessionInfoProto {
+  string nodeId = 1;
+  string sessionId = 2;
+  int64 tenantId = 3;
+  int64 deviceId = 4;
+  int64 productId = 5;
+  string deviceName = 6;
+  string deviceType = 7;
+}
+
 message DeviceSessionEventMsg {
   SessionType type = 1;
   SessionEvent event = 2;
+  SessionInfoProto sessionInfo = 3;
 }

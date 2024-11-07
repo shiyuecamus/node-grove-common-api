@@ -1,0 +1,52 @@
+syntax = "proto3";
+package pb; // 定义自己的包名
+option go_package = "./pb/actor"; // 指定生成go包的路径
+
+enum EntityChangeType {
+  Create = 0;
+  Update = 1;
+  Delete = 2;
+}
+
+enum LogoutType {
+  Self = 0;
+  Force = 1;
+}
+
+enum CacheEvictType {
+  Normal = 0;
+  All = 1;
+}
+
+message CacheEvictMsg {
+  int32 cacheType = 1;
+  CacheEvictType evictType = 2;
+  string key = 3;
+}
+
+message UserLogoutMsg {
+  LogoutType logoutType = 1;
+  string accessToken = 2;
+}
+
+message EntityChangedMsg {
+  string entityType = 1;
+  EntityChangeType changeType = 2;
+  int32 newId = 3;
+  int32 oldId = 4;
+}
+
+enum SessionEvent {
+  OPEN = 0;
+  CLOSED = 1;
+}
+
+enum SessionType {
+  SYNC = 0;
+  ASYNC = 1;
+}
+
+message DeviceSessionEventNotify {
+  SessionType type = 1;
+  SessionEvent event = 2;
+}

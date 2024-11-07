@@ -3,13 +3,15 @@ package queue; // 定义自己的包名
 option go_package = "././pb/queue"; // 指定生成go包的路径
 
 enum SessionEvent {
-  OPEN = 0;
-  CLOSED = 1;
+  SESSION_EVENT_UNSET = 0;
+  OPEN = 1;
+  CLOSED = 2;
 }
 
 enum SessionType {
-  SYNC = 0;
-  ASYNC = 1;
+  SESSION_UNSET = 0;
+  SYNC = 1;
+  ASYNC = 2;
 }
 
 message SessionInfoProto {

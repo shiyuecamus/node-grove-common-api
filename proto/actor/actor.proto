@@ -3,19 +3,22 @@ package actor; // 定义自己的包名
 option go_package = "././pb/actor"; // 指定生成go包的路径
 
 enum EntityChangeType {
-  Create = 0;
-  Update = 1;
-  Delete = 2;
+  ENTITY_CHANGE_UNSET = 0;
+  Create = 1;
+  Update = 2;
+  Delete = 3;
 }
 
 enum LogoutType {
-  Self = 0;
-  Force = 1;
+  LOGOUT_UNSET = 0;
+  Self = 1;
+  Force = 2;
 }
 
 enum CacheEvictType {
-  Normal = 0;
-  All = 1;
+  CACHE_EVICT_UNSET = 0;
+  Normal = 1;
+  All = 2;
 }
 
 message CacheEvictMsg {
@@ -37,13 +40,15 @@ message EntityChangedMsg {
 }
 
 enum SessionEvent {
-  OPEN = 0;
-  CLOSED = 1;
+  SESSION_EVENT_UNSET = 0;
+  OPEN = 1;
+  CLOSED = 2;
 }
 
 enum SessionType {
-  SYNC = 0;
-  ASYNC = 1;
+  SESSION_UNSET = 0;
+  SYNC = 1;
+  ASYNC = 2;
 }
 
 message DeviceSessionEventMsg {

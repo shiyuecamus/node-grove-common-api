@@ -32,7 +32,8 @@ message DeviceInfoProto {
   int64 productId = 2;
   int64 deviceId = 4;
   string deviceName = 5;
-  string additionalInfo = 6;
+  string deviceType = 6;
+  string additionalInfo = 7;
 }
 
 message ProductInfoProto {

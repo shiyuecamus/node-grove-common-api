@@ -35,7 +35,7 @@ message SessionInfoProto {
   string deviceType = 8;
 }
 
-message DeviceSessionEventMsg {
+message DeviceSessionEventNotify {
   SessionType type = 1;
   SessionEvent event = 2;
   SessionInfoProto sessionInfo = 3;

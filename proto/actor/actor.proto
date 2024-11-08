@@ -35,8 +35,9 @@ message UserLogoutMsg {
 message EntityChangedMsg {
   string entityType = 1;
   EntityChangeType changeType = 2;
-  int32 newId = 3;
-  int32 oldId = 4;
+  int64 newId = 3;
+  int64 oldId = 4;
+  int64 tenantId = 5;
 }
 
 enum SessionEvent {

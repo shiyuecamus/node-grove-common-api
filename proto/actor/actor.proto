@@ -78,3 +78,8 @@ message DeviceSessionEventMsg {
   SessionEvent event = 2;
   SessionInfoProto sessionInfo = 3;
 }
+
+message DeviceDeletedMsg {
+  int64 tenantId = 1;
+  int64 deviceId = 2;
+}

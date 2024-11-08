@@ -14,17 +14,28 @@ enum SessionType {
   ASYNC = 2;
 }
 
-message SessionInfoProto {
-  string nodeId = 1;
-  string sessionId = 2;
-  int64 tenantId = 3;
-  int64 deviceId = 4;
-  int64 productId = 5;
-  string deviceName = 6;
-  string deviceType = 7;
+enum TransportType {
+  TCP = 0;
+  MQTT = 1;
+  HTTP = 2;
+  COAP = 3;
+  LWM2M = 4;
+  SNMP = 5;
+  WS = 6;
 }
 
-message DeviceSessionEventNotify {
+message SessionInfoProto {
+  TransportType transport = 1;
+  string nodeId = 2;
+  string sessionId = 3;
+  int64 tenantId = 4;
+  int64 deviceId = 5;
+  int64 productId = 6;
+  string deviceName = 7;
+  string deviceType = 8;
+}
+
+message DeviceSessionEventMsg {
   SessionType type = 1;
   SessionEvent event = 2;
   SessionInfoProto sessionInfo = 3;

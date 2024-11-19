@@ -83,3 +83,13 @@ message DeviceDeletedMsg {
   int64 tenantId = 1;
   int64 deviceId = 2;
 }
+
+message EntityCleanupRequest {
+  string entityType = 1;
+  int64 entityId = 2;
+}
+
+message EntityCleanupResponse {
+  int32 code = 1;
+  string msg = 2;
+}

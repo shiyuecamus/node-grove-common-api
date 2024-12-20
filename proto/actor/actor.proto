@@ -1,6 +1,6 @@
 syntax = "proto3";
 package actor; // 定义自己的包名
-option go_package = "././pb/actor"; // 指定生成go包的路径
+option go_package = "./actor"; // 指定生成go包的路径
 
 enum EntityChangeType {
   ENTITY_CHANGE_UNSET = 0;

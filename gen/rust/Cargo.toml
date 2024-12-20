@@ -5,6 +5,7 @@ edition = "2021"
 authors = ["shiyuecamus <shiyuecamus@gmail.com>"]
 license = "Apache-2.0"
 repository = "https://github.com/shiyuecamus/node-grove-common-api.git"
+description = "A common API for Node Grove"
 
 [dependencies]
 prost = "0.11"

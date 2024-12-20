@@ -8,4 +8,4 @@ repository = "https://github.com/shiyuecamus/node-grove-common-api.git"
 description = "A common API for Node Grove"
 
 [dependencies]
-prost = "0.11"
+prost = "0.13.4"

@@ -2,6 +2,9 @@
 name = "node-grove-common-api"
 version = "0.0.1"
 edition = "2021"
+authors = ["shiyuecamus <shiyuecamus@gmail.com>"]
+license = "Apache-2.0"
+repository = "https://github.com/shiyuecamus/node-grove-common-api.git"
 
 [dependencies]
 prost = "0.11"

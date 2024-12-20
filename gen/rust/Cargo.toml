@@ -1,5 +1,5 @@
 [package]
-name = "node-grove-protos"
+name = "node-grove-common-api"
 version = "0.0.1"
 edition = "2021"
 

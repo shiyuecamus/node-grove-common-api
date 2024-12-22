@@ -1,6 +1,7 @@
 syntax = "proto3";
-package actor; // 定义自己的包名
-option go_package = "./actor"; // 指定生成go包的路径
+package ng_proto; // 定义自己的包名
+import "common.proto";
+option go_package = "./proto"; // 指定生成go包的路径
 
 enum EntityChangeType {
   ENTITY_CHANGE_UNSET = 0;
@@ -40,39 +41,6 @@ message EntityChangedMsg {
   int64 tenantId = 5;
 }
 
-enum SessionEvent {
-  SESSION_EVENT_UNSET = 0;
-  OPEN = 1;
-  CLOSED = 2;
-}
-
-enum SessionType {
-  SESSION_UNSET = 0;
-  SYNC = 1;
-  ASYNC = 2;
-}
-
-enum TransportType {
-  TCP = 0;
-  MQTT = 1;
-  HTTP = 2;
-  COAP = 3;
-  LWM2M = 4;
-  SNMP = 5;
-  WS = 6;
-}
-
-message SessionInfoProto {
-  TransportType transport = 1;
-  string nodeId = 2;
-  string sessionId = 3;
-  int64 tenantId = 4;
-  int64 deviceId = 5;
-  int64 productId = 6;
-  string deviceName = 7;
-  string deviceType = 8;
-}
-
 message DeviceSessionEventMsg {
   SessionType type = 1;
   SessionEvent event = 2;
@@ -82,11 +50,6 @@ message DeviceSessionEventMsg {
 message DeviceDeletedMsg {
   int64 tenantId = 1;
   int64 deviceId = 2;
-}
-
-enum HousekeeperTaskType {
-  HOUSEKEEPER_TASK_UNSET = 0;
-  ENTITY_CLEANUP = 1;
 }
 
 message HousekeeperTaskRequest {

@@ -1,0 +1,40 @@
+syntax = "proto3";
+import "common.proto";
+package ng_proto; // 定义自己的包名
+option go_package = "./proto"; // 指定生成go包的路径
+
+message ValidateDeviceAuthRequest {
+  uint32 type = 1;
+  string clientId = 2;
+  string certificate = 3;
+  string username = 4;
+  string password = 5;
+}
+
+message ValidateDeviceAuthResponse {
+  CommonResponse common = 1;
+  DeviceInfoProto deviceInfo = 2;
+}
+
+message ProvisionRequest {
+  bool gateway = 1;
+  int64 tenantId = 2;
+  int64 productId = 3;
+  string deviceType = 4;
+  string deviceName = 5;
+  CredentialsProto credentials = 6;
+}
+
+message ProvisionResponse {
+  CommonResponse common = 1;
+  DeviceInfoProto deviceInfo = 2;
+  CredentialsProto credentials = 3;
+}
+
+message CredentialsProto {
+  int64 mode = 1;
+  string clientId = 2;
+  string certificate = 3;
+  string username = 4;
+  string password = 5;
+}

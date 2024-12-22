@@ -1,3 +1,0 @@
-syntax = "proto3";
-package event; // 定义自己的包名
-option go_package = "./event"; // 指定生成go包的路径

@@ -1,6 +1,6 @@
 PROTO_DIR = proto
-GOLANG_OUT_DIR = gen/go
-RUST_OUT_DIR = gen/rust/src
+GOLANG_OUT_DIR = go
+RUST_OUT_DIR = rust/src
 
 # Install required tools
 setup:
@@ -9,11 +9,11 @@ setup:
 
 # Generate Golang code
 generate-golang:
-	protoc --proto_path=$(PROTO_DIR) --go_out=$(GOLANG_OUT_DIR) $(PROTO_DIR)/**/*.proto
+	protoc --proto_path=$(PROTO_DIR) --go_out=$(GOLANG_OUT_DIR) $(PROTO_DIR)/*.proto
 
 # Generate Rust code
 generate-rust:
-	protoc --proto_path=$(PROTO_DIR) --prost_out=$(RUST_OUT_DIR) $(PROTO_DIR)/**/*.proto
+	protoc --proto_path=$(PROTO_DIR) --prost_out=$(RUST_OUT_DIR) $(PROTO_DIR)/device.proto
 
 # Clean generated files
 clean:

@@ -1,0 +1,45 @@
+syntax = "proto3";
+package ng_proto; // 定义自己的包名
+import "common.proto";
+option go_package = "./proto"; // 指定生成go包的路径
+
+message DeviceProvisionConnectRequest {
+  string key = 1;
+  string secret = 2;
+}
+
+message DeviceProvisionConnectResponse {
+  CommonResponse common = 1;
+  int64 productId = 2;
+  int64 tenantId = 3;
+  string deviceType = 4;
+}
+
+message DeviceProvisionRequest {
+  bool gateway = 1;
+  string deviceName = 2;
+  DeviceCredentialsProto credentials = 3;
+}
+
+message DeviceCredentialsProto {
+  int64 mode = 1;
+  string clientId = 2;
+  bytes csr = 3;
+  string username = 4;
+  string password = 5;
+}
+
+message DeviceProvisionResponse {
+  CommonResponse common = 1;
+  DeviceInfoProto deviceInfo = 2;
+  DeviceCredentialsResponse credentials = 3;
+}
+
+message DeviceCredentialsResponse {
+  int64 mode = 1;
+  string clientId = 2;
+  string ca = 3;
+  string certificate = 4;
+  string username = 5;
+  string password = 6;
+}

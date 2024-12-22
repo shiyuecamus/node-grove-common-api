@@ -89,16 +89,10 @@ pub struct ProvisionConnectResponse {
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ProvisionRequest {
-    #[prost(int64, tag="1")]
-    pub product_id: i64,
-    #[prost(int64, tag="2")]
-    pub tenant_id: i64,
     #[prost(bool, tag="3")]
     pub gateway: bool,
     #[prost(string, tag="4")]
     pub device_name: ::prost::alloc::string::String,
-    #[prost(string, tag="5")]
-    pub device_type: ::prost::alloc::string::String,
     #[prost(message, optional, tag="6")]
     pub credentials: ::core::option::Option<DeviceCredentialsProto>,
 }

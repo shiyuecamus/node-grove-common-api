@@ -41,9 +41,9 @@ message ProductInfoProto {
 }
 
 message DeviceCredentialsProto {
-  int64 type = 1;
-  string certificate = 2;
-  string clientId = 3;
+  int64 mode = 1;
+  string clientId = 2;
+  bytes csr = 3;
   string username = 4;
   string password = 5;
 }
@@ -69,5 +69,14 @@ message ProvisionRequest {
 message ProvisionResponse {
   CommonResponse common = 1;
   DeviceInfoProto deviceInfo = 2;
-  DeviceCredentialsProto credentials = 3;
+  DeviceCredentialsResponse credentials = 3;
+}
+
+message DeviceCredentialsResponse {
+  int64 mode = 1;
+  string clientId = 2;
+  string ca = 3;
+  string certificate = 4;
+  string username = 5;
+  string password = 6;
 }

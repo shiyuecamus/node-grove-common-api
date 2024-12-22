@@ -59,11 +59,11 @@ pub struct ProductInfoProto {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct DeviceCredentialsProto {
     #[prost(int64, tag="1")]
-    pub r#type: i64,
+    pub mode: i64,
     #[prost(string, tag="2")]
-    pub certificate: ::prost::alloc::string::String,
-    #[prost(string, tag="3")]
     pub client_id: ::prost::alloc::string::String,
+    #[prost(bytes="vec", tag="3")]
+    pub csr: ::prost::alloc::vec::Vec<u8>,
     #[prost(string, tag="4")]
     pub username: ::prost::alloc::string::String,
     #[prost(string, tag="5")]
@@ -103,7 +103,22 @@ pub struct ProvisionResponse {
     #[prost(message, optional, tag="2")]
     pub device_info: ::core::option::Option<DeviceInfoProto>,
     #[prost(message, optional, tag="3")]
-    pub credentials: ::core::option::Option<DeviceCredentialsProto>,
+    pub credentials: ::core::option::Option<DeviceCredentialsResponse>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DeviceCredentialsResponse {
+    #[prost(int64, tag="1")]
+    pub mode: i64,
+    #[prost(string, tag="2")]
+    pub client_id: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub ca: ::prost::alloc::string::String,
+    #[prost(string, tag="4")]
+    pub certificate: ::prost::alloc::string::String,
+    #[prost(string, tag="5")]
+    pub username: ::prost::alloc::string::String,
+    #[prost(string, tag="6")]
+    pub password: ::prost::alloc::string::String,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct SessionInfoProto {

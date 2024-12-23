@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.34.2
 // 	protoc        v5.29.0
-// source: event.proto
+// source: ng_event.proto
 
-package ng_proto
+package proto
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -19,16 +19,16 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-var File_event_proto protoreflect.FileDescriptor
+var File_ng_event_proto protoreflect.FileDescriptor
 
-var file_event_proto_rawDesc = []byte{
-	0x0a, 0x0b, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x08, 0x6e,
-	0x67, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x42, 0x0c, 0x5a, 0x0a, 0x2e, 0x2f, 0x6e, 0x67, 0x5f,
+var file_ng_event_proto_rawDesc = []byte{
+	0x0a, 0x0e, 0x6e, 0x67, 0x5f, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x12, 0x08, 0x6e, 0x67, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x42, 0x09, 0x5a, 0x07, 0x2e, 0x2f,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
-var file_event_proto_goTypes = []any{}
-var file_event_proto_depIdxs = []int32{
+var file_ng_event_proto_goTypes = []any{}
+var file_ng_event_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -36,26 +36,26 @@ var file_event_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_event_proto_init() }
-func file_event_proto_init() {
-	if File_event_proto != nil {
+func init() { file_ng_event_proto_init() }
+func file_ng_event_proto_init() {
+	if File_ng_event_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_event_proto_rawDesc,
+			RawDescriptor: file_ng_event_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_event_proto_goTypes,
-		DependencyIndexes: file_event_proto_depIdxs,
+		GoTypes:           file_ng_event_proto_goTypes,
+		DependencyIndexes: file_ng_event_proto_depIdxs,
 	}.Build()
-	File_event_proto = out.File
-	file_event_proto_rawDesc = nil
-	file_event_proto_goTypes = nil
-	file_event_proto_depIdxs = nil
+	File_ng_event_proto = out.File
+	file_ng_event_proto_rawDesc = nil
+	file_ng_event_proto_goTypes = nil
+	file_ng_event_proto_depIdxs = nil
 }

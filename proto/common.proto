@@ -1,6 +1,6 @@
 syntax = "proto3";
 package ng_proto; // 定义自己的包名
-option go_package = "./proto"; // 指定生成go包的路径
+option go_package = "./ng_proto"; // 指定生成go包的路径
 
 enum SessionEvent {
   SESSION_EVENT_UNSET = 0;

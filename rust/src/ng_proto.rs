@@ -244,4 +244,5 @@ pub struct DeviceCredentialsResponse {
     #[prost(string, tag="6")]
     pub password: ::prost::alloc::string::String,
 }
+include!("ng_proto.serde.rs");
 // @@protoc_insertion_point(module)

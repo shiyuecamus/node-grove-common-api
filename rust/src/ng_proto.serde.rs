@@ -208,17 +208,31 @@ impl serde::Serialize for Condition {
     {
         use serde::ser::SerializeStruct;
         let mut len = 0;
+        if self.r#type != 0 {
+            len += 1;
+        }
         if self.operator != 0 {
+            len += 1;
+        }
+        if !self.sub_conditions.is_empty() {
             len += 1;
         }
         if self.value.is_some() {
             len += 1;
         }
         let mut struct_ser = serializer.serialize_struct("ng_proto.Condition", len)?;
+        if self.r#type != 0 {
+            let v = ConditionType::try_from(self.r#type)
+                .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", self.r#type)))?;
+            struct_ser.serialize_field("type", &v)?;
+        }
         if self.operator != 0 {
             let v = Operator::try_from(self.operator)
                 .map_err(|_| serde::ser::Error::custom(format!("Invalid variant {}", self.operator)))?;
             struct_ser.serialize_field("operator", &v)?;
+        }
+        if !self.sub_conditions.is_empty() {
+            struct_ser.serialize_field("subConditions", &self.sub_conditions)?;
         }
         if let Some(v) = self.value.as_ref() {
             match v {
@@ -260,7 +274,9 @@ impl<'de> serde::Deserialize<'de> for Condition {
         D: serde::Deserializer<'de>,
     {
         const FIELDS: &[&str] = &[
+            "type",
             "operator",
+            "subConditions",
             "stringValue",
             "intValue",
             "floatValue",
@@ -273,7 +289,9 @@ impl<'de> serde::Deserialize<'de> for Condition {
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
+            Type,
             Operator,
+            SubConditions,
             StringValue,
             IntValue,
             FloatValue,
@@ -303,7 +321,9 @@ impl<'de> serde::Deserialize<'de> for Condition {
                         E: serde::de::Error,
                     {
                         match value {
+                            "type" => Ok(GeneratedField::Type),
                             "operator" => Ok(GeneratedField::Operator),
+                            "subConditions" => Ok(GeneratedField::SubConditions),
                             "stringValue" => Ok(GeneratedField::StringValue),
                             "intValue" => Ok(GeneratedField::IntValue),
                             "floatValue" => Ok(GeneratedField::FloatValue),
@@ -331,15 +351,29 @@ impl<'de> serde::Deserialize<'de> for Condition {
                 where
                     V: serde::de::MapAccess<'de>,
             {
+                let mut r#type__ = None;
                 let mut operator__ = None;
+                let mut sub_conditions__ = None;
                 let mut value__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
+                        GeneratedField::Type => {
+                            if r#type__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("type"));
+                            }
+                            r#type__ = Some(map_.next_value::<ConditionType>()? as i32);
+                        }
                         GeneratedField::Operator => {
                             if operator__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("operator"));
                             }
                             operator__ = Some(map_.next_value::<Operator>()? as i32);
+                        }
+                        GeneratedField::SubConditions => {
+                            if sub_conditions__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("subConditions"));
+                            }
+                            sub_conditions__ = Some(map_.next_value()?);
                         }
                         GeneratedField::StringValue => {
                             if value__.is_some() {
@@ -396,12 +430,85 @@ impl<'de> serde::Deserialize<'de> for Condition {
                     }
                 }
                 Ok(Condition {
+                    r#type: r#type__.unwrap_or_default(),
                     operator: operator__.unwrap_or_default(),
+                    sub_conditions: sub_conditions__.unwrap_or_default(),
                     value: value__,
                 })
             }
         }
         deserializer.deserialize_struct("ng_proto.Condition", FIELDS, GeneratedVisitor)
+    }
+}
+impl serde::Serialize for ConditionType {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        let variant = match self {
+            Self::And => "AND",
+            Self::Or => "OR",
+        };
+        serializer.serialize_str(variant)
+    }
+}
+impl<'de> serde::Deserialize<'de> for ConditionType {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "AND",
+            "OR",
+        ];
+
+        struct GeneratedVisitor;
+
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = ConditionType;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                write!(formatter, "expected one of: {:?}", &FIELDS)
+            }
+
+            fn visit_i64<E>(self, v: i64) -> std::result::Result<Self::Value, E>
+            where
+                E: serde::de::Error,
+            {
+                i32::try_from(v)
+                    .ok()
+                    .and_then(|x| x.try_into().ok())
+                    .ok_or_else(|| {
+                        serde::de::Error::invalid_value(serde::de::Unexpected::Signed(v), &self)
+                    })
+            }
+
+            fn visit_u64<E>(self, v: u64) -> std::result::Result<Self::Value, E>
+            where
+                E: serde::de::Error,
+            {
+                i32::try_from(v)
+                    .ok()
+                    .and_then(|x| x.try_into().ok())
+                    .ok_or_else(|| {
+                        serde::de::Error::invalid_value(serde::de::Unexpected::Unsigned(v), &self)
+                    })
+            }
+
+            fn visit_str<E>(self, value: &str) -> std::result::Result<Self::Value, E>
+            where
+                E: serde::de::Error,
+            {
+                match value {
+                    "AND" => Ok(ConditionType::And),
+                    "OR" => Ok(ConditionType::Or),
+                    _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
+                }
+            }
+        }
+        deserializer.deserialize_any(GeneratedVisitor)
     }
 }
 impl serde::Serialize for DeviceCredentialsProto {

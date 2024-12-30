@@ -292,30 +292,34 @@ pub struct BooleanArray {
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Condition {
-    #[prost(enumeration="Operator", tag="1")]
+    #[prost(enumeration="ConditionType", tag="1")]
+    pub r#type: i32,
+    #[prost(enumeration="Operator", tag="2")]
     pub operator: i32,
-    #[prost(oneof="condition::Value", tags="2, 3, 4, 5, 6, 7, 8, 9")]
+    #[prost(message, repeated, tag="11")]
+    pub sub_conditions: ::prost::alloc::vec::Vec<Condition>,
+    #[prost(oneof="condition::Value", tags="3, 4, 5, 6, 7, 8, 9, 10")]
     pub value: ::core::option::Option<condition::Value>,
 }
 /// Nested message and enum types in `Condition`.
 pub mod condition {
     #[derive(Clone, PartialEq, ::prost::Oneof)]
     pub enum Value {
-        #[prost(string, tag="2")]
+        #[prost(string, tag="3")]
         StringValue(::prost::alloc::string::String),
-        #[prost(int64, tag="3")]
+        #[prost(int64, tag="4")]
         IntValue(i64),
-        #[prost(float, tag="4")]
+        #[prost(float, tag="5")]
         FloatValue(f32),
-        #[prost(bool, tag="5")]
+        #[prost(bool, tag="6")]
         BoolValue(bool),
-        #[prost(message, tag="6")]
-        StringArray(super::StringArray),
         #[prost(message, tag="7")]
-        IntArray(super::IntArray),
+        StringArray(super::StringArray),
         #[prost(message, tag="8")]
-        FloatArray(super::FloatArray),
+        IntArray(super::IntArray),
         #[prost(message, tag="9")]
+        FloatArray(super::FloatArray),
+        #[prost(message, tag="10")]
         BoolArray(super::BooleanArray),
     }
 }
@@ -462,6 +466,32 @@ impl Operator {
             "BETWEEN" => Some(Self::Between),
             "NOT_BETWEEN" => Some(Self::NotBetween),
             "NOT_NULL" => Some(Self::NotNull),
+            _ => None,
+        }
+    }
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ConditionType {
+    And = 0,
+    Or = 1,
+}
+impl ConditionType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Self::And => "AND",
+            Self::Or => "OR",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "AND" => Some(Self::And),
+            "OR" => Some(Self::Or),
             _ => None,
         }
     }

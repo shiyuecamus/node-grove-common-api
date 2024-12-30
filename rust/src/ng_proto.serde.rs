@@ -1,5 +1,5 @@
 // @generated
-impl serde::Serialize for BooleanArray {
+impl serde::Serialize for BoolArray {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
     where
@@ -10,14 +10,14 @@ impl serde::Serialize for BooleanArray {
         if !self.values.is_empty() {
             len += 1;
         }
-        let mut struct_ser = serializer.serialize_struct("ng_proto.BooleanArray", len)?;
+        let mut struct_ser = serializer.serialize_struct("ng_proto.BoolArray", len)?;
         if !self.values.is_empty() {
             struct_ser.serialize_field("values", &self.values)?;
         }
         struct_ser.end()
     }
 }
-impl<'de> serde::Deserialize<'de> for BooleanArray {
+impl<'de> serde::Deserialize<'de> for BoolArray {
     #[allow(deprecated)]
     fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
     where
@@ -61,13 +61,13 @@ impl<'de> serde::Deserialize<'de> for BooleanArray {
         }
         struct GeneratedVisitor;
         impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
-            type Value = BooleanArray;
+            type Value = BoolArray;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                formatter.write_str("struct ng_proto.BooleanArray")
+                formatter.write_str("struct ng_proto.BoolArray")
             }
 
-            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BooleanArray, V::Error>
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BoolArray, V::Error>
                 where
                     V: serde::de::MapAccess<'de>,
             {
@@ -82,12 +82,12 @@ impl<'de> serde::Deserialize<'de> for BooleanArray {
                         }
                     }
                 }
-                Ok(BooleanArray {
+                Ok(BoolArray {
                     values: values__.unwrap_or_default(),
                 })
             }
         }
-        deserializer.deserialize_struct("ng_proto.BooleanArray", FIELDS, GeneratedVisitor)
+        deserializer.deserialize_struct("ng_proto.BoolArray", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for CommonResponse {

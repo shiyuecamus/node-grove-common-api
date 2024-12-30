@@ -286,7 +286,7 @@ pub struct FloatArray {
     pub values: ::prost::alloc::vec::Vec<f32>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct BooleanArray {
+pub struct BoolArray {
     #[prost(bool, repeated, tag="1")]
     pub values: ::prost::alloc::vec::Vec<bool>,
 }
@@ -320,7 +320,7 @@ pub mod condition {
         #[prost(message, tag="9")]
         FloatArray(super::FloatArray),
         #[prost(message, tag="10")]
-        BoolArray(super::BooleanArray),
+        BoolArray(super::BoolArray),
     }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]

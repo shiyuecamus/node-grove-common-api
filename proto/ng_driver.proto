@@ -64,7 +64,7 @@ message FloatArray {
   repeated float values = 1;
 }
 
-message BooleanArray {
+message BoolArray {
   repeated bool values = 1;
 }
 
@@ -79,7 +79,7 @@ message Condition {
     StringArray stringArray = 7;
     IntArray intArray = 8;
     FloatArray floatArray = 9;
-    BooleanArray boolArray = 10;
+    BoolArray boolArray = 10;
   }
   repeated Condition subConditions = 11;
 }

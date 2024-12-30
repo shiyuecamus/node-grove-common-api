@@ -14,7 +14,10 @@ generate-golang:
 
 # Generate Rust code
 generate-rust:
-	protoc --proto_path=$(PROTO_DIR) --prost_out=$(RUST_OUT_DIR) --prost-serde_out=$(RUST_OUT_DIR) $(PROTO_DIR)/ng_device.proto
+	protoc --proto_path=$(PROTO_DIR) \
+	       --prost_out=$(RUST_OUT_DIR) \
+	       --prost-serde_out=$(RUST_OUT_DIR) \
+	       $(PROTO_DIR)/ng_device.proto $(PROTO_DIR)/ng_driver.proto
 
 generate-all: generate-golang generate-rust
 

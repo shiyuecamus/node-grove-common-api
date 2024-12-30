@@ -244,5 +244,171 @@ pub struct DeviceCredentialsResponse {
     #[prost(string, tag="6")]
     pub password: ::prost::alloc::string::String,
 }
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EnumValue {
+    #[prost(string, tag="1")]
+    pub key: ::prost::alloc::string::String,
+    #[prost(message, optional, tag="2")]
+    pub value: ::core::option::Option<::prost_types::Any>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct EnumArrayType {
+    #[prost(message, repeated, tag="1")]
+    pub values: ::prost::alloc::vec::Vec<EnumValue>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Condition {
+    #[prost(enumeration="Operator", tag="1")]
+    pub operator: i32,
+    #[prost(message, optional, tag="2")]
+    pub value: ::core::option::Option<::prost_types::Any>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Extension {
+    #[prost(string, tag="1")]
+    pub field: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub label: ::prost::alloc::string::String,
+    #[prost(enumeration="ExtensionType", tag="3")]
+    pub r#type: i32,
+    #[prost(message, repeated, tag="4")]
+    pub enum_info: ::prost::alloc::vec::Vec<EnumValue>,
+    #[prost(message, repeated, tag="5")]
+    pub conditions: ::prost::alloc::vec::Vec<Condition>,
+    #[prost(bool, tag="6")]
+    pub required: bool,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DriverMetadata {
+    #[prost(string, tag="1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag="2")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(string, tag="3")]
+    pub version: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag="4")]
+    pub extensions: ::prost::alloc::vec::Vec<Extension>,
+    #[prost(message, repeated, tag="5")]
+    pub data_point_extensions: ::prost::alloc::vec::Vec<Extension>,
+    #[prost(message, repeated, tag="6")]
+    pub action_extensions: ::prost::alloc::vec::Vec<Extension>,
+    #[prost(message, repeated, tag="7")]
+    pub event_extensions: ::prost::alloc::vec::Vec<Extension>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ExtensionType {
+    String = 0,
+    Integer = 1,
+    Float = 2,
+    Boolean = 3,
+    StringArray = 4,
+    IntegerArray = 5,
+    FloatArray = 6,
+    BooleanArray = 7,
+    Enum = 8,
+    EnumArray = 9,
+}
+impl ExtensionType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Self::String => "STRING",
+            Self::Integer => "INTEGER",
+            Self::Float => "FLOAT",
+            Self::Boolean => "BOOLEAN",
+            Self::StringArray => "STRING_ARRAY",
+            Self::IntegerArray => "INTEGER_ARRAY",
+            Self::FloatArray => "FLOAT_ARRAY",
+            Self::BooleanArray => "BOOLEAN_ARRAY",
+            Self::Enum => "ENUM",
+            Self::EnumArray => "ENUM_ARRAY",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "STRING" => Some(Self::String),
+            "INTEGER" => Some(Self::Integer),
+            "FLOAT" => Some(Self::Float),
+            "BOOLEAN" => Some(Self::Boolean),
+            "STRING_ARRAY" => Some(Self::StringArray),
+            "INTEGER_ARRAY" => Some(Self::IntegerArray),
+            "FLOAT_ARRAY" => Some(Self::FloatArray),
+            "BOOLEAN_ARRAY" => Some(Self::BooleanArray),
+            "ENUM" => Some(Self::Enum),
+            "ENUM_ARRAY" => Some(Self::EnumArray),
+            _ => None,
+        }
+    }
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Operator {
+    Eq = 0,
+    Neq = 1,
+    Gt = 2,
+    Gte = 3,
+    Lt = 4,
+    Lte = 5,
+    Contains = 6,
+    Prefix = 7,
+    Suffix = 8,
+    Regex = 9,
+    In = 10,
+    NotIn = 11,
+    Between = 12,
+    NotBetween = 13,
+    NotNull = 14,
+}
+impl Operator {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Self::Eq => "EQ",
+            Self::Neq => "NEQ",
+            Self::Gt => "GT",
+            Self::Gte => "GTE",
+            Self::Lt => "LT",
+            Self::Lte => "LTE",
+            Self::Contains => "CONTAINS",
+            Self::Prefix => "PREFIX",
+            Self::Suffix => "SUFFIX",
+            Self::Regex => "REGEX",
+            Self::In => "IN",
+            Self::NotIn => "NOT_IN",
+            Self::Between => "BETWEEN",
+            Self::NotBetween => "NOT_BETWEEN",
+            Self::NotNull => "NOT_NULL",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "EQ" => Some(Self::Eq),
+            "NEQ" => Some(Self::Neq),
+            "GT" => Some(Self::Gt),
+            "GTE" => Some(Self::Gte),
+            "LT" => Some(Self::Lt),
+            "LTE" => Some(Self::Lte),
+            "CONTAINS" => Some(Self::Contains),
+            "PREFIX" => Some(Self::Prefix),
+            "SUFFIX" => Some(Self::Suffix),
+            "REGEX" => Some(Self::Regex),
+            "IN" => Some(Self::In),
+            "NOT_IN" => Some(Self::NotIn),
+            "BETWEEN" => Some(Self::Between),
+            "NOT_BETWEEN" => Some(Self::NotBetween),
+            "NOT_NULL" => Some(Self::NotNull),
+            _ => None,
+        }
+    }
+}
 include!("ng_proto.serde.rs");
 // @@protoc_insertion_point(module)

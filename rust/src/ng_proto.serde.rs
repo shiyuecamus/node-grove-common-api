@@ -1,4 +1,95 @@
 // @generated
+impl serde::Serialize for BooleanArray {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.values.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("ng_proto.BooleanArray", len)?;
+        if !self.values.is_empty() {
+            struct_ser.serialize_field("values", &self.values)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for BooleanArray {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "values",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Values,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "values" => Ok(GeneratedField::Values),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = BooleanArray;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct ng_proto.BooleanArray")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<BooleanArray, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut values__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Values => {
+                            if values__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("values"));
+                            }
+                            values__ = Some(map_.next_value()?);
+                        }
+                    }
+                }
+                Ok(BooleanArray {
+                    values: values__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("ng_proto.BooleanArray", FIELDS, GeneratedVisitor)
+    }
+}
 impl serde::Serialize for CommonResponse {
     #[allow(deprecated)]
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
@@ -130,7 +221,34 @@ impl serde::Serialize for Condition {
             struct_ser.serialize_field("operator", &v)?;
         }
         if let Some(v) = self.value.as_ref() {
-            struct_ser.serialize_field("value", v)?;
+            match v {
+                condition::Value::StringValue(v) => {
+                    struct_ser.serialize_field("stringValue", v)?;
+                }
+                condition::Value::IntValue(v) => {
+                    #[allow(clippy::needless_borrow)]
+                    #[allow(clippy::needless_borrows_for_generic_args)]
+                    struct_ser.serialize_field("intValue", ToString::to_string(&v).as_str())?;
+                }
+                condition::Value::FloatValue(v) => {
+                    struct_ser.serialize_field("floatValue", v)?;
+                }
+                condition::Value::BoolValue(v) => {
+                    struct_ser.serialize_field("boolValue", v)?;
+                }
+                condition::Value::StringArray(v) => {
+                    struct_ser.serialize_field("stringArray", v)?;
+                }
+                condition::Value::IntArray(v) => {
+                    struct_ser.serialize_field("intArray", v)?;
+                }
+                condition::Value::FloatArray(v) => {
+                    struct_ser.serialize_field("floatArray", v)?;
+                }
+                condition::Value::BoolArray(v) => {
+                    struct_ser.serialize_field("boolArray", v)?;
+                }
+            }
         }
         struct_ser.end()
     }
@@ -143,13 +261,27 @@ impl<'de> serde::Deserialize<'de> for Condition {
     {
         const FIELDS: &[&str] = &[
             "operator",
-            "value",
+            "stringValue",
+            "intValue",
+            "floatValue",
+            "boolValue",
+            "stringArray",
+            "intArray",
+            "floatArray",
+            "boolArray",
         ];
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
             Operator,
-            Value,
+            StringValue,
+            IntValue,
+            FloatValue,
+            BoolValue,
+            StringArray,
+            IntArray,
+            FloatArray,
+            BoolArray,
         }
         impl<'de> serde::Deserialize<'de> for GeneratedField {
             fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
@@ -172,7 +304,14 @@ impl<'de> serde::Deserialize<'de> for Condition {
                     {
                         match value {
                             "operator" => Ok(GeneratedField::Operator),
-                            "value" => Ok(GeneratedField::Value),
+                            "stringValue" => Ok(GeneratedField::StringValue),
+                            "intValue" => Ok(GeneratedField::IntValue),
+                            "floatValue" => Ok(GeneratedField::FloatValue),
+                            "boolValue" => Ok(GeneratedField::BoolValue),
+                            "stringArray" => Ok(GeneratedField::StringArray),
+                            "intArray" => Ok(GeneratedField::IntArray),
+                            "floatArray" => Ok(GeneratedField::FloatArray),
+                            "boolArray" => Ok(GeneratedField::BoolArray),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -202,11 +341,57 @@ impl<'de> serde::Deserialize<'de> for Condition {
                             }
                             operator__ = Some(map_.next_value::<Operator>()? as i32);
                         }
-                        GeneratedField::Value => {
+                        GeneratedField::StringValue => {
                             if value__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("value"));
+                                return Err(serde::de::Error::duplicate_field("stringValue"));
                             }
-                            value__ = map_.next_value()?;
+                            value__ = map_.next_value::<::std::option::Option<_>>()?.map(condition::Value::StringValue);
+                        }
+                        GeneratedField::IntValue => {
+                            if value__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("intValue"));
+                            }
+                            value__ = map_.next_value::<::std::option::Option<::pbjson::private::NumberDeserialize<_>>>()?.map(|x| condition::Value::IntValue(x.0));
+                        }
+                        GeneratedField::FloatValue => {
+                            if value__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("floatValue"));
+                            }
+                            value__ = map_.next_value::<::std::option::Option<::pbjson::private::NumberDeserialize<_>>>()?.map(|x| condition::Value::FloatValue(x.0));
+                        }
+                        GeneratedField::BoolValue => {
+                            if value__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("boolValue"));
+                            }
+                            value__ = map_.next_value::<::std::option::Option<_>>()?.map(condition::Value::BoolValue);
+                        }
+                        GeneratedField::StringArray => {
+                            if value__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("stringArray"));
+                            }
+                            value__ = map_.next_value::<::std::option::Option<_>>()?.map(condition::Value::StringArray)
+;
+                        }
+                        GeneratedField::IntArray => {
+                            if value__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("intArray"));
+                            }
+                            value__ = map_.next_value::<::std::option::Option<_>>()?.map(condition::Value::IntArray)
+;
+                        }
+                        GeneratedField::FloatArray => {
+                            if value__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("floatArray"));
+                            }
+                            value__ = map_.next_value::<::std::option::Option<_>>()?.map(condition::Value::FloatArray)
+;
+                        }
+                        GeneratedField::BoolArray => {
+                            if value__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("boolArray"));
+                            }
+                            value__ = map_.next_value::<::std::option::Option<_>>()?.map(condition::Value::BoolArray)
+;
                         }
                     }
                 }
@@ -1565,7 +1750,22 @@ impl serde::Serialize for EnumValue {
             struct_ser.serialize_field("key", &self.key)?;
         }
         if let Some(v) = self.value.as_ref() {
-            struct_ser.serialize_field("value", v)?;
+            match v {
+                enum_value::Value::StringValue(v) => {
+                    struct_ser.serialize_field("stringValue", v)?;
+                }
+                enum_value::Value::IntValue(v) => {
+                    #[allow(clippy::needless_borrow)]
+                    #[allow(clippy::needless_borrows_for_generic_args)]
+                    struct_ser.serialize_field("intValue", ToString::to_string(&v).as_str())?;
+                }
+                enum_value::Value::FloatValue(v) => {
+                    struct_ser.serialize_field("floatValue", v)?;
+                }
+                enum_value::Value::BoolValue(v) => {
+                    struct_ser.serialize_field("boolValue", v)?;
+                }
+            }
         }
         struct_ser.end()
     }
@@ -1578,13 +1778,19 @@ impl<'de> serde::Deserialize<'de> for EnumValue {
     {
         const FIELDS: &[&str] = &[
             "key",
-            "value",
+            "stringValue",
+            "intValue",
+            "floatValue",
+            "boolValue",
         ];
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
             Key,
-            Value,
+            StringValue,
+            IntValue,
+            FloatValue,
+            BoolValue,
         }
         impl<'de> serde::Deserialize<'de> for GeneratedField {
             fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
@@ -1607,7 +1813,10 @@ impl<'de> serde::Deserialize<'de> for EnumValue {
                     {
                         match value {
                             "key" => Ok(GeneratedField::Key),
-                            "value" => Ok(GeneratedField::Value),
+                            "stringValue" => Ok(GeneratedField::StringValue),
+                            "intValue" => Ok(GeneratedField::IntValue),
+                            "floatValue" => Ok(GeneratedField::FloatValue),
+                            "boolValue" => Ok(GeneratedField::BoolValue),
                             _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
                         }
                     }
@@ -1637,11 +1846,29 @@ impl<'de> serde::Deserialize<'de> for EnumValue {
                             }
                             key__ = Some(map_.next_value()?);
                         }
-                        GeneratedField::Value => {
+                        GeneratedField::StringValue => {
                             if value__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("value"));
+                                return Err(serde::de::Error::duplicate_field("stringValue"));
                             }
-                            value__ = map_.next_value()?;
+                            value__ = map_.next_value::<::std::option::Option<_>>()?.map(enum_value::Value::StringValue);
+                        }
+                        GeneratedField::IntValue => {
+                            if value__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("intValue"));
+                            }
+                            value__ = map_.next_value::<::std::option::Option<::pbjson::private::NumberDeserialize<_>>>()?.map(|x| enum_value::Value::IntValue(x.0));
+                        }
+                        GeneratedField::FloatValue => {
+                            if value__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("floatValue"));
+                            }
+                            value__ = map_.next_value::<::std::option::Option<::pbjson::private::NumberDeserialize<_>>>()?.map(|x| enum_value::Value::FloatValue(x.0));
+                        }
+                        GeneratedField::BoolValue => {
+                            if value__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("boolValue"));
+                            }
+                            value__ = map_.next_value::<::std::option::Option<_>>()?.map(enum_value::Value::BoolValue);
                         }
                     }
                 }
@@ -1840,9 +2067,9 @@ impl serde::Serialize for ExtensionType {
     {
         let variant = match self {
             Self::String => "STRING",
-            Self::Integer => "INTEGER",
+            Self::Int => "INT",
             Self::Float => "FLOAT",
-            Self::Boolean => "BOOLEAN",
+            Self::Bool => "BOOL",
             Self::StringArray => "STRING_ARRAY",
             Self::IntegerArray => "INTEGER_ARRAY",
             Self::FloatArray => "FLOAT_ARRAY",
@@ -1861,9 +2088,9 @@ impl<'de> serde::Deserialize<'de> for ExtensionType {
     {
         const FIELDS: &[&str] = &[
             "STRING",
-            "INTEGER",
+            "INT",
             "FLOAT",
-            "BOOLEAN",
+            "BOOL",
             "STRING_ARRAY",
             "INTEGER_ARRAY",
             "FLOAT_ARRAY",
@@ -1911,9 +2138,9 @@ impl<'de> serde::Deserialize<'de> for ExtensionType {
             {
                 match value {
                     "STRING" => Ok(ExtensionType::String),
-                    "INTEGER" => Ok(ExtensionType::Integer),
+                    "INT" => Ok(ExtensionType::Int),
                     "FLOAT" => Ok(ExtensionType::Float),
-                    "BOOLEAN" => Ok(ExtensionType::Boolean),
+                    "BOOL" => Ok(ExtensionType::Bool),
                     "STRING_ARRAY" => Ok(ExtensionType::StringArray),
                     "INTEGER_ARRAY" => Ok(ExtensionType::IntegerArray),
                     "FLOAT_ARRAY" => Ok(ExtensionType::FloatArray),
@@ -1925,6 +2152,100 @@ impl<'de> serde::Deserialize<'de> for ExtensionType {
             }
         }
         deserializer.deserialize_any(GeneratedVisitor)
+    }
+}
+impl serde::Serialize for FloatArray {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.values.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("ng_proto.FloatArray", len)?;
+        if !self.values.is_empty() {
+            struct_ser.serialize_field("values", &self.values)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for FloatArray {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "values",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Values,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "values" => Ok(GeneratedField::Values),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = FloatArray;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct ng_proto.FloatArray")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<FloatArray, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut values__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Values => {
+                            if values__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("values"));
+                            }
+                            values__ = 
+                                Some(map_.next_value::<Vec<::pbjson::private::NumberDeserialize<_>>>()?
+                                    .into_iter().map(|x| x.0).collect())
+                            ;
+                        }
+                    }
+                }
+                Ok(FloatArray {
+                    values: values__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("ng_proto.FloatArray", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for HousekeeperTaskType {
@@ -1996,6 +2317,100 @@ impl<'de> serde::Deserialize<'de> for HousekeeperTaskType {
             }
         }
         deserializer.deserialize_any(GeneratedVisitor)
+    }
+}
+impl serde::Serialize for IntArray {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.values.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("ng_proto.IntArray", len)?;
+        if !self.values.is_empty() {
+            struct_ser.serialize_field("values", &self.values.iter().map(ToString::to_string).collect::<Vec<_>>())?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for IntArray {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "values",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Values,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "values" => Ok(GeneratedField::Values),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = IntArray;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct ng_proto.IntArray")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<IntArray, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut values__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Values => {
+                            if values__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("values"));
+                            }
+                            values__ = 
+                                Some(map_.next_value::<Vec<::pbjson::private::NumberDeserialize<_>>>()?
+                                    .into_iter().map(|x| x.0).collect())
+                            ;
+                        }
+                    }
+                }
+                Ok(IntArray {
+                    values: values__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("ng_proto.IntArray", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for Operator {
@@ -2701,6 +3116,97 @@ impl<'de> serde::Deserialize<'de> for SessionType {
             }
         }
         deserializer.deserialize_any(GeneratedVisitor)
+    }
+}
+impl serde::Serialize for StringArray {
+    #[allow(deprecated)]
+    fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        use serde::ser::SerializeStruct;
+        let mut len = 0;
+        if !self.values.is_empty() {
+            len += 1;
+        }
+        let mut struct_ser = serializer.serialize_struct("ng_proto.StringArray", len)?;
+        if !self.values.is_empty() {
+            struct_ser.serialize_field("values", &self.values)?;
+        }
+        struct_ser.end()
+    }
+}
+impl<'de> serde::Deserialize<'de> for StringArray {
+    #[allow(deprecated)]
+    fn deserialize<D>(deserializer: D) -> std::result::Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        const FIELDS: &[&str] = &[
+            "values",
+        ];
+
+        #[allow(clippy::enum_variant_names)]
+        enum GeneratedField {
+            Values,
+        }
+        impl<'de> serde::Deserialize<'de> for GeneratedField {
+            fn deserialize<D>(deserializer: D) -> std::result::Result<GeneratedField, D::Error>
+            where
+                D: serde::Deserializer<'de>,
+            {
+                struct GeneratedVisitor;
+
+                impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+                    type Value = GeneratedField;
+
+                    fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                        write!(formatter, "expected one of: {:?}", &FIELDS)
+                    }
+
+                    #[allow(unused_variables)]
+                    fn visit_str<E>(self, value: &str) -> std::result::Result<GeneratedField, E>
+                    where
+                        E: serde::de::Error,
+                    {
+                        match value {
+                            "values" => Ok(GeneratedField::Values),
+                            _ => Err(serde::de::Error::unknown_field(value, FIELDS)),
+                        }
+                    }
+                }
+                deserializer.deserialize_identifier(GeneratedVisitor)
+            }
+        }
+        struct GeneratedVisitor;
+        impl<'de> serde::de::Visitor<'de> for GeneratedVisitor {
+            type Value = StringArray;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("struct ng_proto.StringArray")
+            }
+
+            fn visit_map<V>(self, mut map_: V) -> std::result::Result<StringArray, V::Error>
+                where
+                    V: serde::de::MapAccess<'de>,
+            {
+                let mut values__ = None;
+                while let Some(k) = map_.next_key()? {
+                    match k {
+                        GeneratedField::Values => {
+                            if values__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("values"));
+                            }
+                            values__ = Some(map_.next_value()?);
+                        }
+                    }
+                }
+                Ok(StringArray {
+                    values: values__.unwrap_or_default(),
+                })
+            }
+        }
+        deserializer.deserialize_struct("ng_proto.StringArray", FIELDS, GeneratedVisitor)
     }
 }
 impl serde::Serialize for TransportType {

@@ -248,8 +248,22 @@ pub struct DeviceCredentialsResponse {
 pub struct EnumValue {
     #[prost(string, tag="1")]
     pub key: ::prost::alloc::string::String,
-    #[prost(message, optional, tag="2")]
-    pub value: ::core::option::Option<::prost_types::Any>,
+    #[prost(oneof="enum_value::Value", tags="2, 3, 4, 5")]
+    pub value: ::core::option::Option<enum_value::Value>,
+}
+/// Nested message and enum types in `EnumValue`.
+pub mod enum_value {
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Value {
+        #[prost(string, tag="2")]
+        StringValue(::prost::alloc::string::String),
+        #[prost(int64, tag="3")]
+        IntValue(i64),
+        #[prost(float, tag="4")]
+        FloatValue(f32),
+        #[prost(bool, tag="5")]
+        BoolValue(bool),
+    }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct EnumArrayType {
@@ -257,11 +271,53 @@ pub struct EnumArrayType {
     pub values: ::prost::alloc::vec::Vec<EnumValue>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StringArray {
+    #[prost(string, repeated, tag="1")]
+    pub values: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct IntArray {
+    #[prost(int64, repeated, tag="1")]
+    pub values: ::prost::alloc::vec::Vec<i64>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FloatArray {
+    #[prost(float, repeated, tag="1")]
+    pub values: ::prost::alloc::vec::Vec<f32>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BooleanArray {
+    #[prost(bool, repeated, tag="1")]
+    pub values: ::prost::alloc::vec::Vec<bool>,
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Condition {
     #[prost(enumeration="Operator", tag="1")]
     pub operator: i32,
-    #[prost(message, optional, tag="2")]
-    pub value: ::core::option::Option<::prost_types::Any>,
+    #[prost(oneof="condition::Value", tags="2, 3, 4, 5, 6, 7, 8, 9")]
+    pub value: ::core::option::Option<condition::Value>,
+}
+/// Nested message and enum types in `Condition`.
+pub mod condition {
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Value {
+        #[prost(string, tag="2")]
+        StringValue(::prost::alloc::string::String),
+        #[prost(int64, tag="3")]
+        IntValue(i64),
+        #[prost(float, tag="4")]
+        FloatValue(f32),
+        #[prost(bool, tag="5")]
+        BoolValue(bool),
+        #[prost(message, tag="6")]
+        StringArray(super::StringArray),
+        #[prost(message, tag="7")]
+        IntArray(super::IntArray),
+        #[prost(message, tag="8")]
+        FloatArray(super::FloatArray),
+        #[prost(message, tag="9")]
+        BoolArray(super::BooleanArray),
+    }
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Extension {
@@ -299,9 +355,9 @@ pub struct DriverMetadata {
 #[repr(i32)]
 pub enum ExtensionType {
     String = 0,
-    Integer = 1,
+    Int = 1,
     Float = 2,
-    Boolean = 3,
+    Bool = 3,
     StringArray = 4,
     IntegerArray = 5,
     FloatArray = 6,
@@ -317,9 +373,9 @@ impl ExtensionType {
     pub fn as_str_name(&self) -> &'static str {
         match self {
             Self::String => "STRING",
-            Self::Integer => "INTEGER",
+            Self::Int => "INT",
             Self::Float => "FLOAT",
-            Self::Boolean => "BOOLEAN",
+            Self::Bool => "BOOL",
             Self::StringArray => "STRING_ARRAY",
             Self::IntegerArray => "INTEGER_ARRAY",
             Self::FloatArray => "FLOAT_ARRAY",
@@ -332,9 +388,9 @@ impl ExtensionType {
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
             "STRING" => Some(Self::String),
-            "INTEGER" => Some(Self::Integer),
+            "INT" => Some(Self::Int),
             "FLOAT" => Some(Self::Float),
-            "BOOLEAN" => Some(Self::Boolean),
+            "BOOL" => Some(Self::Bool),
             "STRING_ARRAY" => Some(Self::StringArray),
             "INTEGER_ARRAY" => Some(Self::IntegerArray),
             "FLOAT_ARRAY" => Some(Self::FloatArray),

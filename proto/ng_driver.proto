@@ -1,13 +1,12 @@
 syntax = "proto3";
 package ng_proto; // 定义自己的包名
-import "google/protobuf/any.proto";
 option go_package = "./proto"; // 指定生成go包的路径
 
 enum ExtensionType {
   STRING = 0;
-  INTEGER = 1;
+  INT = 1;
   FLOAT = 2;
-  BOOLEAN = 3;
+  BOOL = 3;
   STRING_ARRAY = 4;
   INTEGER_ARRAY = 5;
   FLOAT_ARRAY = 6;
@@ -18,7 +17,12 @@ enum ExtensionType {
 
 message EnumValue {
   string key = 1;
-  google.protobuf.Any value = 2;
+  oneof value {
+    string stringValue = 2;
+    int64  intValue = 3;
+    float floatValue = 4;
+    bool boolValue = 5;
+  }
 }
 
 message EnumArrayType {
@@ -43,9 +47,34 @@ enum Operator {
   NOT_NULL = 14;
 }
 
+message StringArray {
+  repeated string values = 1;
+}
+
+message IntArray {
+  repeated int64 values = 1;
+}
+
+message FloatArray {
+  repeated float values = 1;
+}
+
+message BooleanArray {
+  repeated bool values = 1;
+}
+
 message Condition {
   Operator operator = 1;
-  google.protobuf.Any value = 2;
+  oneof value {
+    string stringValue = 2;
+    int64 intValue = 3;
+    float floatValue = 4;
+    bool boolValue = 5;
+    StringArray stringArray = 6;
+    IntArray intArray = 7;
+    FloatArray floatArray = 8;
+    BooleanArray boolArray = 9;
+  }
 }
 
 message Extension {

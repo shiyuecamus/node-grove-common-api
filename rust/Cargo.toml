@@ -8,8 +8,9 @@ repository = "https://github.com/shiyuecamus/node-grove-common-api.git"
 description = "A common API for Node Grove"
 
 [dependencies]
-prost = "0.13.4"
-prost-types = "0.13.4"
+prost = "0.13"
+prost-types = "0.13"
+prost-serde = "0.13"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 pbjson = "0.7"

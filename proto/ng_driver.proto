@@ -15,20 +15,6 @@ enum ExtensionType {
   ENUM_ARRAY = 9;
 }
 
-message EnumValue {
-  string key = 1;
-  oneof value {
-    string stringValue = 2;
-    int64  intValue = 3;
-    float floatValue = 4;
-    bool boolValue = 5;
-  }
-}
-
-message EnumArrayType {
-  repeated EnumValue values = 1;
-}
-
 enum Operator {
   EQ = 0;
   NEQ = 1;
@@ -50,6 +36,20 @@ enum Operator {
 enum ConditionType {
   AND = 0;
   OR = 1;
+}
+
+message EnumValue {
+  string key = 1;
+  oneof value {
+    string stringValue = 2;
+    int64  intValue = 3;
+    float floatValue = 4;
+    bool boolValue = 5;
+  }
+}
+
+message EnumArrayType {
+  repeated EnumValue values = 1;
 }
 
 message StringArray {

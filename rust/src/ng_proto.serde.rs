@@ -1565,6 +1565,9 @@ impl serde::Serialize for DriverMetadata {
         if !self.name.is_empty() {
             len += 1;
         }
+        if !self.code.is_empty() {
+            len += 1;
+        }
         if !self.description.is_empty() {
             len += 1;
         }
@@ -1586,6 +1589,9 @@ impl serde::Serialize for DriverMetadata {
         let mut struct_ser = serializer.serialize_struct("ng_proto.DriverMetadata", len)?;
         if !self.name.is_empty() {
             struct_ser.serialize_field("name", &self.name)?;
+        }
+        if !self.code.is_empty() {
+            struct_ser.serialize_field("code", &self.code)?;
         }
         if !self.description.is_empty() {
             struct_ser.serialize_field("description", &self.description)?;
@@ -1616,6 +1622,7 @@ impl<'de> serde::Deserialize<'de> for DriverMetadata {
     {
         const FIELDS: &[&str] = &[
             "name",
+            "code",
             "description",
             "version",
             "extensions",
@@ -1627,6 +1634,7 @@ impl<'de> serde::Deserialize<'de> for DriverMetadata {
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
             Name,
+            Code,
             Description,
             Version,
             Extensions,
@@ -1655,6 +1663,7 @@ impl<'de> serde::Deserialize<'de> for DriverMetadata {
                     {
                         match value {
                             "name" => Ok(GeneratedField::Name),
+                            "code" => Ok(GeneratedField::Code),
                             "description" => Ok(GeneratedField::Description),
                             "version" => Ok(GeneratedField::Version),
                             "extensions" => Ok(GeneratedField::Extensions),
@@ -1681,6 +1690,7 @@ impl<'de> serde::Deserialize<'de> for DriverMetadata {
                     V: serde::de::MapAccess<'de>,
             {
                 let mut name__ = None;
+                let mut code__ = None;
                 let mut description__ = None;
                 let mut version__ = None;
                 let mut extensions__ = None;
@@ -1694,6 +1704,12 @@ impl<'de> serde::Deserialize<'de> for DriverMetadata {
                                 return Err(serde::de::Error::duplicate_field("name"));
                             }
                             name__ = Some(map_.next_value()?);
+                        }
+                        GeneratedField::Code => {
+                            if code__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("code"));
+                            }
+                            code__ = Some(map_.next_value()?);
                         }
                         GeneratedField::Description => {
                             if description__.is_some() {
@@ -1735,6 +1751,7 @@ impl<'de> serde::Deserialize<'de> for DriverMetadata {
                 }
                 Ok(DriverMetadata {
                     name: name__.unwrap_or_default(),
+                    code: code__.unwrap_or_default(),
                     description: description__.unwrap_or_default(),
                     version: version__.unwrap_or_default(),
                     extensions: extensions__.unwrap_or_default(),

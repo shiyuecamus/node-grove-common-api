@@ -343,16 +343,18 @@ pub struct DriverMetadata {
     #[prost(string, tag="1")]
     pub name: ::prost::alloc::string::String,
     #[prost(string, tag="2")]
-    pub description: ::prost::alloc::string::String,
+    pub code: ::prost::alloc::string::String,
     #[prost(string, tag="3")]
+    pub description: ::prost::alloc::string::String,
+    #[prost(string, tag="4")]
     pub version: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag="4")]
-    pub extensions: ::prost::alloc::vec::Vec<Extension>,
     #[prost(message, repeated, tag="5")]
-    pub data_point_extensions: ::prost::alloc::vec::Vec<Extension>,
+    pub extensions: ::prost::alloc::vec::Vec<Extension>,
     #[prost(message, repeated, tag="6")]
-    pub action_extensions: ::prost::alloc::vec::Vec<Extension>,
+    pub data_point_extensions: ::prost::alloc::vec::Vec<Extension>,
     #[prost(message, repeated, tag="7")]
+    pub action_extensions: ::prost::alloc::vec::Vec<Extension>,
+    #[prost(message, repeated, tag="8")]
     pub event_extensions: ::prost::alloc::vec::Vec<Extension>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]

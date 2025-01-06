@@ -1,6 +1,6 @@
 syntax = "proto3";
 package ng_proto; // 定义自己的包名
-import "ng_common.proto";
+import "ng_common.proto"; // Ensure the import path is correct
 option go_package = "./proto"; // 指定生成go包的路径
 
 enum EntityChangeType {
@@ -62,4 +62,14 @@ message HousekeeperTaskRequest {
 message HousekeeperTaskResponse {
   int32 code = 1;
   string msg = 2;
+}
+
+message DriverChangedMsg {
+  int64 tenantId = 1;
+  int64 driverId = 2;
+}
+
+message ProductDriverChangedMsg {
+  int64 tenantId = 1;
+  int64 productId = 2;
 }

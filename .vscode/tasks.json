@@ -1,0 +1,104 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Setup",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "setup"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "Install required tools for proto generation",
+            "presentation": {
+                "reveal": "silent",
+                "revealProblems": "onProblem",
+                "close": true
+            }
+        },
+        {
+            "label": "Generate Golang",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "generate-golang"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Generate Golang code from proto files",
+            "presentation": {
+                "reveal": "silent",
+                "revealProblems": "onProblem",
+                "close": true
+            }
+        },
+        {
+            "label": "Generate Rust",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "generate-rust"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Generate Rust code from proto files",
+            "presentation": {
+                "reveal": "silent",
+                "revealProblems": "onProblem",
+                "close": true
+            }
+        },
+        {
+            "label": "Generate All",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "generate-all"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Generate code for both Golang and Rust",
+            "presentation": {
+                "reveal": "silent",
+                "revealProblems": "onProblem",
+                "close": true
+            }
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "clean"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Remove all generated files",
+            "presentation": {
+                "reveal": "silent",
+                "revealProblems": "onProblem",
+                "close": true
+            }
+        },
+        {
+            "label": "Help",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "help"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Display help information about Makefile targets",
+            "presentation": {
+                "reveal": "silent",
+                "revealProblems": "onProblem",
+                "close": true
+            }
+        }
+    ]
+}

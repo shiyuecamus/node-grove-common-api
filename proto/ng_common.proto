@@ -3,25 +3,26 @@ package ng_proto; // 定义自己的包名
 option go_package = "./proto"; // 指定生成go包的路径
 
 enum SessionEvent {
-  SESSION_EVENT_UNSET = 0;
+  SESSION_EVENT_UNSPECIFIED = 0;
   OPEN = 1;
   CLOSED = 2;
 }
 
 enum SessionType {
-  SESSION_UNSET = 0;
+  SESSION_TYPE_UNSPECIFIED = 0;
   SYNC = 1;
   ASYNC = 2;
 }
 
 enum TransportType {
-  TCP = 0;
-  MQTT = 1;
-  HTTP = 2;
-  COAP = 3;
-  LWM2M = 4;
-  SNMP = 5;
-  WS = 6;
+  TRANSPORT_TYPE_UNSPECIFIED = 0;
+  TCP = 1;
+  MQTT = 2;
+  HTTP = 3;
+  COAP = 4;
+  LWM2M = 5;
+  SNMP = 6;
+  WS = 7;
 }
 
 enum HousekeeperTaskType {

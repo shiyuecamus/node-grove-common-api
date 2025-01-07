@@ -3,39 +3,42 @@ package ng_proto; // 定义自己的包名
 option go_package = "./proto"; // 指定生成go包的路径
 
 enum ExtensionType {
-  STRING = 0;
-  INT = 1;
-  FLOAT = 2;
-  BOOL = 3;
-  STRING_ARRAY = 4;
-  INTEGER_ARRAY = 5;
-  FLOAT_ARRAY = 6;
-  BOOLEAN_ARRAY = 7;
-  ENUM = 8;
-  ENUM_ARRAY = 9;
+  EXTENSION_TYPE_UNSPECIFIED = 0;
+  STRING = 1;
+  INT = 2;
+  FLOAT = 3;
+  BOOL = 4;
+  STRING_ARRAY = 5;
+  INTEGER_ARRAY = 6;
+  FLOAT_ARRAY = 7;
+  BOOLEAN_ARRAY = 8;
+  ENUM = 9;
+  ENUM_ARRAY = 10;
 }
 
 enum Operator {
-  EQ = 0;
-  NEQ = 1;
-  GT = 2;
-  GTE = 3;
-  LT = 4;
-  LTE = 5;
-  CONTAINS = 6;
-  PREFIX = 7;
-  SUFFIX = 8;
-  REGEX = 9;
-  IN = 10;
-  NOT_IN = 11;
-  BETWEEN = 12;
-  NOT_BETWEEN = 13;
-  NOT_NULL = 14;
+  OPERATOR_UNSPECIFIED = 0;
+  EQ = 1;
+  NEQ = 2;
+  GT = 3;
+  GTE = 4;
+  LT = 5;
+  LTE = 6;
+  CONTAINS = 7;
+  PREFIX = 8;
+  SUFFIX = 9;
+  REGEX = 10;
+  IN = 11;
+  NOT_IN = 12;
+  BETWEEN = 13;
+  NOT_BETWEEN = 14;
+  NOT_NULL = 15;
 }
 
 enum ConditionType {
-  AND = 0;
-  OR = 1;
+  CONDITION_TYPE_UNSPECIFIED = 0;
+  AND = 1;
+  OR = 2;
 }
 
 message EnumValue {

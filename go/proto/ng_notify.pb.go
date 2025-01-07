@@ -63,14 +63,14 @@ func (x *DeviceSessionEventNotify) GetType() SessionType {
 	if x != nil {
 		return x.Type
 	}
-	return SessionType_SESSION_UNSET
+	return SessionType_SESSION_TYPE_UNSPECIFIED
 }
 
 func (x *DeviceSessionEventNotify) GetEvent() SessionEvent {
 	if x != nil {
 		return x.Event
 	}
-	return SessionEvent_SESSION_EVENT_UNSET
+	return SessionEvent_SESSION_EVENT_UNSPECIFIED
 }
 
 func (x *DeviceSessionEventNotify) GetSessionInfo() *SessionInfoProto {

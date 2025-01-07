@@ -447,6 +447,7 @@ impl serde::Serialize for ConditionType {
         S: serde::Serializer,
     {
         let variant = match self {
+            Self::Unspecified => "CONDITION_TYPE_UNSPECIFIED",
             Self::And => "AND",
             Self::Or => "OR",
         };
@@ -460,6 +461,7 @@ impl<'de> serde::Deserialize<'de> for ConditionType {
         D: serde::Deserializer<'de>,
     {
         const FIELDS: &[&str] = &[
+            "CONDITION_TYPE_UNSPECIFIED",
             "AND",
             "OR",
         ];
@@ -502,6 +504,7 @@ impl<'de> serde::Deserialize<'de> for ConditionType {
                 E: serde::de::Error,
             {
                 match value {
+                    "CONDITION_TYPE_UNSPECIFIED" => Ok(ConditionType::Unspecified),
                     "AND" => Ok(ConditionType::And),
                     "OR" => Ok(ConditionType::Or),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
@@ -2190,6 +2193,7 @@ impl serde::Serialize for ExtensionType {
         S: serde::Serializer,
     {
         let variant = match self {
+            Self::Unspecified => "EXTENSION_TYPE_UNSPECIFIED",
             Self::String => "STRING",
             Self::Int => "INT",
             Self::Float => "FLOAT",
@@ -2211,6 +2215,7 @@ impl<'de> serde::Deserialize<'de> for ExtensionType {
         D: serde::Deserializer<'de>,
     {
         const FIELDS: &[&str] = &[
+            "EXTENSION_TYPE_UNSPECIFIED",
             "STRING",
             "INT",
             "FLOAT",
@@ -2261,6 +2266,7 @@ impl<'de> serde::Deserialize<'de> for ExtensionType {
                 E: serde::de::Error,
             {
                 match value {
+                    "EXTENSION_TYPE_UNSPECIFIED" => Ok(ExtensionType::Unspecified),
                     "STRING" => Ok(ExtensionType::String),
                     "INT" => Ok(ExtensionType::Int),
                     "FLOAT" => Ok(ExtensionType::Float),
@@ -2544,6 +2550,7 @@ impl serde::Serialize for Operator {
         S: serde::Serializer,
     {
         let variant = match self {
+            Self::Unspecified => "OPERATOR_UNSPECIFIED",
             Self::Eq => "EQ",
             Self::Neq => "NEQ",
             Self::Gt => "GT",
@@ -2570,6 +2577,7 @@ impl<'de> serde::Deserialize<'de> for Operator {
         D: serde::Deserializer<'de>,
     {
         const FIELDS: &[&str] = &[
+            "OPERATOR_UNSPECIFIED",
             "EQ",
             "NEQ",
             "GT",
@@ -2625,6 +2633,7 @@ impl<'de> serde::Deserialize<'de> for Operator {
                 E: serde::de::Error,
             {
                 match value {
+                    "OPERATOR_UNSPECIFIED" => Ok(Operator::Unspecified),
                     "EQ" => Ok(Operator::Eq),
                     "NEQ" => Ok(Operator::Neq),
                     "GT" => Ok(Operator::Gt),
@@ -2877,7 +2886,7 @@ impl serde::Serialize for SessionEvent {
         S: serde::Serializer,
     {
         let variant = match self {
-            Self::Unset => "SESSION_EVENT_UNSET",
+            Self::Unspecified => "SESSION_EVENT_UNSPECIFIED",
             Self::Open => "OPEN",
             Self::Closed => "CLOSED",
         };
@@ -2891,7 +2900,7 @@ impl<'de> serde::Deserialize<'de> for SessionEvent {
         D: serde::Deserializer<'de>,
     {
         const FIELDS: &[&str] = &[
-            "SESSION_EVENT_UNSET",
+            "SESSION_EVENT_UNSPECIFIED",
             "OPEN",
             "CLOSED",
         ];
@@ -2934,7 +2943,7 @@ impl<'de> serde::Deserialize<'de> for SessionEvent {
                 E: serde::de::Error,
             {
                 match value {
-                    "SESSION_EVENT_UNSET" => Ok(SessionEvent::Unset),
+                    "SESSION_EVENT_UNSPECIFIED" => Ok(SessionEvent::Unspecified),
                     "OPEN" => Ok(SessionEvent::Open),
                     "CLOSED" => Ok(SessionEvent::Closed),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
@@ -3175,7 +3184,7 @@ impl serde::Serialize for SessionType {
         S: serde::Serializer,
     {
         let variant = match self {
-            Self::SessionUnset => "SESSION_UNSET",
+            Self::Unspecified => "SESSION_TYPE_UNSPECIFIED",
             Self::Sync => "SYNC",
             Self::Async => "ASYNC",
         };
@@ -3189,7 +3198,7 @@ impl<'de> serde::Deserialize<'de> for SessionType {
         D: serde::Deserializer<'de>,
     {
         const FIELDS: &[&str] = &[
-            "SESSION_UNSET",
+            "SESSION_TYPE_UNSPECIFIED",
             "SYNC",
             "ASYNC",
         ];
@@ -3232,7 +3241,7 @@ impl<'de> serde::Deserialize<'de> for SessionType {
                 E: serde::de::Error,
             {
                 match value {
-                    "SESSION_UNSET" => Ok(SessionType::SessionUnset),
+                    "SESSION_TYPE_UNSPECIFIED" => Ok(SessionType::Unspecified),
                     "SYNC" => Ok(SessionType::Sync),
                     "ASYNC" => Ok(SessionType::Async),
                     _ => Err(serde::de::Error::unknown_variant(value, FIELDS)),
@@ -3340,6 +3349,7 @@ impl serde::Serialize for TransportType {
         S: serde::Serializer,
     {
         let variant = match self {
+            Self::Unspecified => "TRANSPORT_TYPE_UNSPECIFIED",
             Self::Tcp => "TCP",
             Self::Mqtt => "MQTT",
             Self::Http => "HTTP",
@@ -3358,6 +3368,7 @@ impl<'de> serde::Deserialize<'de> for TransportType {
         D: serde::Deserializer<'de>,
     {
         const FIELDS: &[&str] = &[
+            "TRANSPORT_TYPE_UNSPECIFIED",
             "TCP",
             "MQTT",
             "HTTP",
@@ -3405,6 +3416,7 @@ impl<'de> serde::Deserialize<'de> for TransportType {
                 E: serde::de::Error,
             {
                 match value {
+                    "TRANSPORT_TYPE_UNSPECIFIED" => Ok(TransportType::Unspecified),
                     "TCP" => Ok(TransportType::Tcp),
                     "MQTT" => Ok(TransportType::Mqtt),
                     "HTTP" => Ok(TransportType::Http),

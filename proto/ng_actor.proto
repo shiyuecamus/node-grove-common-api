@@ -4,20 +4,20 @@ import "ng_common.proto"; // Ensure the import path is correct
 option go_package = "./proto"; // 指定生成go包的路径
 
 enum EntityChangeType {
-  ENTITY_CHANGE_UNSET = 0;
+  ENTITY_CHANGE_TYPE_UNSPECIFIED = 0;
   Create = 1;
   Update = 2;
   Delete = 3;
 }
 
 enum LogoutType {
-  LOGOUT_UNSET = 0;
+  LOGOUT_TYPE_UNSPECIFIED = 0;
   Self = 1;
   Force = 2;
 }
 
 enum CacheEvictType {
-  CACHE_EVICT_UNSET = 0;
+  CACHE_EVICT_TYPE_UNSPECIFIED = 0;
   Normal = 1;
   All = 2;
 }

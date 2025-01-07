@@ -58,7 +58,7 @@ pub struct SessionInfoProto {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SessionEvent {
-    Unset = 0,
+    Unspecified = 0,
     Open = 1,
     Closed = 2,
 }
@@ -69,7 +69,7 @@ impl SessionEvent {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Self::Unset => "SESSION_EVENT_UNSET",
+            Self::Unspecified => "SESSION_EVENT_UNSPECIFIED",
             Self::Open => "OPEN",
             Self::Closed => "CLOSED",
         }
@@ -77,7 +77,7 @@ impl SessionEvent {
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
-            "SESSION_EVENT_UNSET" => Some(Self::Unset),
+            "SESSION_EVENT_UNSPECIFIED" => Some(Self::Unspecified),
             "OPEN" => Some(Self::Open),
             "CLOSED" => Some(Self::Closed),
             _ => None,
@@ -87,7 +87,7 @@ impl SessionEvent {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum SessionType {
-    SessionUnset = 0,
+    Unspecified = 0,
     Sync = 1,
     Async = 2,
 }
@@ -98,7 +98,7 @@ impl SessionType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
-            Self::SessionUnset => "SESSION_UNSET",
+            Self::Unspecified => "SESSION_TYPE_UNSPECIFIED",
             Self::Sync => "SYNC",
             Self::Async => "ASYNC",
         }
@@ -106,7 +106,7 @@ impl SessionType {
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
-            "SESSION_UNSET" => Some(Self::SessionUnset),
+            "SESSION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
             "SYNC" => Some(Self::Sync),
             "ASYNC" => Some(Self::Async),
             _ => None,
@@ -116,13 +116,14 @@ impl SessionType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum TransportType {
-    Tcp = 0,
-    Mqtt = 1,
-    Http = 2,
-    Coap = 3,
-    Lwm2m = 4,
-    Snmp = 5,
-    Ws = 6,
+    Unspecified = 0,
+    Tcp = 1,
+    Mqtt = 2,
+    Http = 3,
+    Coap = 4,
+    Lwm2m = 5,
+    Snmp = 6,
+    Ws = 7,
 }
 impl TransportType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -131,6 +132,7 @@ impl TransportType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
+            Self::Unspecified => "TRANSPORT_TYPE_UNSPECIFIED",
             Self::Tcp => "TCP",
             Self::Mqtt => "MQTT",
             Self::Http => "HTTP",
@@ -143,6 +145,7 @@ impl TransportType {
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
+            "TRANSPORT_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
             "TCP" => Some(Self::Tcp),
             "MQTT" => Some(Self::Mqtt),
             "HTTP" => Some(Self::Http),
@@ -360,16 +363,17 @@ pub struct DriverMetadata {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ExtensionType {
-    String = 0,
-    Int = 1,
-    Float = 2,
-    Bool = 3,
-    StringArray = 4,
-    IntegerArray = 5,
-    FloatArray = 6,
-    BooleanArray = 7,
-    Enum = 8,
-    EnumArray = 9,
+    Unspecified = 0,
+    String = 1,
+    Int = 2,
+    Float = 3,
+    Bool = 4,
+    StringArray = 5,
+    IntegerArray = 6,
+    FloatArray = 7,
+    BooleanArray = 8,
+    Enum = 9,
+    EnumArray = 10,
 }
 impl ExtensionType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -378,6 +382,7 @@ impl ExtensionType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
+            Self::Unspecified => "EXTENSION_TYPE_UNSPECIFIED",
             Self::String => "STRING",
             Self::Int => "INT",
             Self::Float => "FLOAT",
@@ -393,6 +398,7 @@ impl ExtensionType {
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
+            "EXTENSION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
             "STRING" => Some(Self::String),
             "INT" => Some(Self::Int),
             "FLOAT" => Some(Self::Float),
@@ -410,21 +416,22 @@ impl ExtensionType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum Operator {
-    Eq = 0,
-    Neq = 1,
-    Gt = 2,
-    Gte = 3,
-    Lt = 4,
-    Lte = 5,
-    Contains = 6,
-    Prefix = 7,
-    Suffix = 8,
-    Regex = 9,
-    In = 10,
-    NotIn = 11,
-    Between = 12,
-    NotBetween = 13,
-    NotNull = 14,
+    Unspecified = 0,
+    Eq = 1,
+    Neq = 2,
+    Gt = 3,
+    Gte = 4,
+    Lt = 5,
+    Lte = 6,
+    Contains = 7,
+    Prefix = 8,
+    Suffix = 9,
+    Regex = 10,
+    In = 11,
+    NotIn = 12,
+    Between = 13,
+    NotBetween = 14,
+    NotNull = 15,
 }
 impl Operator {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -433,6 +440,7 @@ impl Operator {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
+            Self::Unspecified => "OPERATOR_UNSPECIFIED",
             Self::Eq => "EQ",
             Self::Neq => "NEQ",
             Self::Gt => "GT",
@@ -453,6 +461,7 @@ impl Operator {
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
+            "OPERATOR_UNSPECIFIED" => Some(Self::Unspecified),
             "EQ" => Some(Self::Eq),
             "NEQ" => Some(Self::Neq),
             "GT" => Some(Self::Gt),
@@ -475,8 +484,9 @@ impl Operator {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ConditionType {
-    And = 0,
-    Or = 1,
+    Unspecified = 0,
+    And = 1,
+    Or = 2,
 }
 impl ConditionType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -485,6 +495,7 @@ impl ConditionType {
     /// (if the ProtoBuf definition does not change) and safe for programmatic use.
     pub fn as_str_name(&self) -> &'static str {
         match self {
+            Self::Unspecified => "CONDITION_TYPE_UNSPECIFIED",
             Self::And => "AND",
             Self::Or => "OR",
         }
@@ -492,6 +503,7 @@ impl ConditionType {
     /// Creates an enum from field names used in the ProtoBuf definition.
     pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
         match value {
+            "CONDITION_TYPE_UNSPECIFIED" => Some(Self::Unspecified),
             "AND" => Some(Self::And),
             "OR" => Some(Self::Or),
             _ => None,

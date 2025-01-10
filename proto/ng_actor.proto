@@ -41,6 +41,12 @@ message EntityChangedMsg {
   int64 tenantId = 5;
 }
 
+message EntityStatusChangedMsg {
+  string entityType = 1;
+  int64 entityId = 2;
+  int32 status = 4;
+}
+
 message DeviceSessionEventMsg {
   SessionType type = 1;
   SessionEvent event = 2;
